@@ -25,6 +25,7 @@ function Login(){
         });
         const jsonData=await data.json();
         console.log(jsonData);
+        console.log("fromSubbmited!")
     }
 
     return (
