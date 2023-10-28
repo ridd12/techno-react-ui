@@ -15,13 +15,13 @@ function Login(){
 
     const loginFormHandler=async (event)=>{
         event.preventDefault();
+        const params={
+            userEmail: "dasd",
+            password:"asa"
+          };
         const data=await fetch("http://localhost:8080/sign-up",{
-            mode: "cors",
             method: "POST",
-            headers: {
-                "userEmail": "dasd",
-                "password":"asa"
-              }
+            body: JSON.stringify( params )
         });
         const jsonData=await data.json();
         console.log(jsonData);
