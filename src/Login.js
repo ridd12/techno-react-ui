@@ -16,15 +16,25 @@ function Login(){
     const loginFormHandler=async (event)=>{
         event.preventDefault();
         const params={
-            userEmail: "dasd",
-            password:"asa"
+            "userEmail": "dasd",
+            "password":"asa"
           };
-        const data=await fetch("http://localhost:8080/sign-up",{
-            method: "POST",
-            body: JSON.stringify( params )
-        });
-        const jsonData=await data.json();
-        console.log(jsonData);
+          const data=await fetch("http://localhost:8080",{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json" // Set the correct Content-Type header
+            },
+            body:JSON.stringify(params)
+          });
+        //   const json=await data.json();
+
+        // const data=await fetch("http://localhost:8080/sign-up",{
+        //     method: "POST",
+        //     body: JSON.stringify( params )
+        // });
+        // const jsonData=await data.json();
+        console.log(data);
+        // console.log(json);
         console.log("fromSubbmited!")
     }
 
