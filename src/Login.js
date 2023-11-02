@@ -1,63 +1,65 @@
 import { useState } from "react";
-import './index.css';
+import "./index.css";
 
-function Login(){
-    const [email,setEmail]= useState();
-    const [password,setPassword] = useState();
+function Login() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-    const updateEmail=(event)=>{
-        setEmail(event.target.value);
-    }
-    
-    const updatePassword=(event)=>{
-        setPassword(event.target.value);
-    }
+  const updateEmail = (event) => {
+    setEmail(event.target.value);
+  };
 
-    const loginFormHandler=async (event)=>{
-        event.preventDefault();
-        const params={
-            "userEmail": "dasd",
-            "password":"asa"
-          };
-          const data=await fetch("http://localhost:8080",{
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json" // Set the correct Content-Type header
-            },
-            body:JSON.stringify(params)
-          });
-        //   const json=await data.json();
+  const updatePassword = (event) => {
+    setPassword(event.target.value);
+  };
 
-        // const data=await fetch("http://localhost:8080/sign-up",{
-        //     method: "POST",
-        //     body: JSON.stringify( params )
-        // });
-        // const jsonData=await data.json();
-        console.log(data);
-        // console.log(json);
-        console.log("fromSubbmited!")
-    }
+  const loginFormHandler = async (event) => {
+    event.preventDefault();
+    const params = {
+      userEmail: email,
+      password: password,
+    };
+    const data = await fetch("http://localhost:8080", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+    setEmail("");
+    setPassword("");
+    console.log("fromSubbmited!");
+  };
 
-    return (
-        <div>
-
-        <div className="login-modal">
-            <p>Enter your login credential or Enter your new password to enter!</p>
-            <form>
-                    <label>Enter your Email: 
-                    <input type="text" value={email} onChange={updateEmail}></input> 
-                    </label>
-                    <br/>
-                    <label>Enter your password: 
-                    <input type="text" value={password} onChange={updatePassword}></input>
-                    </label>
-                    <br/>
-                    <input type="submit" onClick={event=>{loginFormHandler(event)}}></input>
-            </form>
-        </div>
-
-        </div>
-    );
+  return (
+    <div>
+      <div className="login-modal">
+        <p>Enter your login credential or Enter your new password to enter!</p>
+        <form>
+          <label>
+            Enter your Email:
+            <input type="text" value={email} onChange={updateEmail}></input>
+          </label>
+          <br />
+          <label>
+            Enter your password:
+            <input
+              type="text"
+              value={password}
+              onChange={updatePassword}
+            ></input>
+          </label>
+          <br />
+          <input
+            type="submit"
+            onClick={(event) => {
+              loginFormHandler(event);
+            }}
+          ></input>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Login;
